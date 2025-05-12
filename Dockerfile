@@ -1,11 +1,11 @@
-FROM rust:latest AS builder
-WORKDIR /usr/src/app
+﻿FROM rust:latest
 
-ADD Cargo.lock Cargo.toml ./
-ADD src/ ./src
+WORKDIR /usr/src/app
+ADD . .
 
 RUN cargo build --release
 
-ENV PORT=8080
+ENV PORT=8081
+EXPOSE 8081
+CMD ["./target/release/task1"]
 
-CMD ["/usr/src/app/target/release/task1"]
