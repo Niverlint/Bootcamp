@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER_NAME=rust_web
+CONTAINER_NAME=Hello_word_web
 IMAGE_NAME=${DOCKER_IMAGE:-"your_dockerhub_username/hello_word:latest"}
 
 echo "старый контейнер остановлен"
