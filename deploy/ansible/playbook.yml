@@ -1,1 +1,38 @@
+---
+name: Set up systemd service for Rust web app
+hosts: all
+become: true
+
+tasks:
+  - name: Ensure Docker is installed
+    apt:
+      name: docker.io
+      state: present
+      update_cache: yes
+
+  - name: Create systemd service
+    copy:
+      dest: /etc/systemd/system/rust_web.service
+      content: |
+        [Unit]
+        Description=Rust Web App
+        After=docker.service
+        Requires=docker.service
+
+        [Service]
+        ExecStart=/usr/bin/docker start -a rust_web
+        ExecStop=/usr/bin/docker stop -t 2 rust_web
+        Restart=always
+
+        [Install]
+        WantedBy=multi-user.target
+
+  - name: Reload systemd daemon
+    command: systemctl daemon-reload
+
+  - name: Enable and start service
+    systemd:
+      name: rust_web
+      enabled: yes
+      state: restarted
 
