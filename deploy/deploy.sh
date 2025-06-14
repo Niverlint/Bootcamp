@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONTAINER_NAME=Hello_word_web
-IMAGE_NAME=${DOCKER_IMAGE:-"your_dockerhub_username/hello_word:latest"}
+IMAGE_NAME=${DOCKER_IMAGE:-"amalasa/hello_word:latest"}
 
 echo "старый контейнер остановлен"
 docker stop "$CONTAINER_NAME" 2>/dev/null || true
