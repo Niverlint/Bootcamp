@@ -13,3 +13,4 @@ docker pull "$IMAGE_NAME"
 echo "Запускаю контейнер"
 docker run -d --name "$CONTAINER_NAME" -p 80:80 "$IMAGE_NAME"
 
+echo "готово"
