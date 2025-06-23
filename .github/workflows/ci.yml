@@ -27,6 +27,12 @@ jobs:
           IMAGE=${{ secrets.DOCKER_USERNAME }}/hello_word:latest
           docker build -t $IMAGE .
           docker push $IMAGE
+          
+      - name: Отладка SSH-ключей
+        run: |
+            echo "REMOTE_HOST: ${{ secrets.REMOTE_HOST }}"
+            echo "REMOTE_USER: ${{ secrets.REMOTE_USER }}"
+            echo "SSH_PRIVATE_KEY длина: $(echo "${{ secrets.SSH_PRIVATE_KEY }}" | wc -c)"
 
       - name: Добавить SSH-ключ
         run: |
